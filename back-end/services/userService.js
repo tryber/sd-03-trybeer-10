@@ -22,9 +22,9 @@ const login = async (userEmail, userPassword) => {
   }
 
   const jwtLogin = { expiresIn: '30m', algorithm: 'HS256' };
-  const { email } = user;
+  const { name, email, role } = user;
   const token = jwt.sign({ data: email }, secret, jwtLogin);
-  return token
+  return { token, name, email, role }
 };
 
 module.exports = {

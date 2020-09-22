@@ -8,7 +8,7 @@ const userLogin = rescue(async (req, res) => {
     const { status, message } = token;
     return res.status(status).json({ message })
   }
-  res.status(200).json({ token })
+  res.status(200).json( token )
 });
 
 module.exports = {
