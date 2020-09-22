@@ -1,3 +1,5 @@
+require('dotenv/config');
+
 const mysqlx = require('@mysql/xdevapi');
 
 const config = {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory} from 'react-router-dom';
 
 const emailTest = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
-function Login() {
+function Login (props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,8 +11,8 @@ function Login() {
     password.length >= 6 && email.match(emailTest)
   );
 
-  const setLocalStorage = (name, email, token, role) => {
-    localStorage.setItem('user', { name, email, token, role })
+  const setLocalStorage = (user) => {
+    localStorage.setItem('user', JSON.stringify(user))
   }
 
   return (
@@ -36,19 +36,22 @@ function Login() {
         <button
           data-testid="signin-btn"
           type="button"
-          onClick={() => {
+          onClick={async () => {
             // const form = new FormData (document.getElementById('login-form'));
-            console.log(email, password);
-            const test = email;
-            const { name, emaild, token, role } =
-              fetch('http://localhost:3001/login', { method: 'POST', body: `{ "test": ${test} , password }` })
+            const body = {"email":email, "password":password}
+            const headers = new Headers({
+                "Content-Type": "application/json",
+                "Content-Length": JSON.stringify(body).length
+            })
+            const user = await
+              fetch('http://localhost:3001/login', { method: 'POST', body: JSON.stringify(body), headers })
                 .then((response) => response.json()
                   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));;
-            setLocalStorage(name, emaild, token, role);
-            if (role === 'administrator') {
-              return <Redirect to='/admin/home' />
+            setLocalStorage(user);
+            if (user.role === 'administrator') {
+              return props.history.push('/admin/home');
             }
-            return <Redirect to='/products' />
+            return props.history.push('/products');
           }}
           disabled={!validateLogin()}
         >
