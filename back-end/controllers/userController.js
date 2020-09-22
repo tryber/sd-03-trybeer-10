@@ -3,6 +3,7 @@ const userService = require('../services/userService');
 
 const userLogin = rescue(async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body);
   const token = await userService.login(email, password);
   if (token.status) {
     const { status, message } = token;
