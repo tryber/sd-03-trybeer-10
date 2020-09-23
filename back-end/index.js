@@ -1,15 +1,13 @@
 require('dotenv/config');
-
-const userController = require('./controllers/userController')
-
-const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const express = require('express');
+const userController = require('./controllers/userController');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
 }));
 app.use(bodyParser.json());
 

@@ -7,7 +7,7 @@ const emailTest = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<
 
 const validateLogin = (email, password) => {
   if (password.length < 6 || !email.match(emailTest)) {
-    return { status: 400, message: "Invalid entries." }
+    return { status: 400, message: 'Invalid entries.' };
   }
   return null;
 };
@@ -18,13 +18,13 @@ const login = async (userEmail, userPassword) => {
   const user = await userModel.login(userEmail);
   console.log(user);
   if (!user || userPassword !== user.password) {
-    return { status: 401, message: "Incorrect user email or password." }
+    return { status: 401, message: 'Incorrect user email or password.' };
   }
 
   const jwtLogin = { expiresIn: '30m', algorithm: 'HS256' };
   const { name, email, role } = user;
   const token = jwt.sign({ data: email }, secret, jwtLogin);
-  return { token, name, email, role }
+  return { token, name, email, role };
 };
 
 module.exports = {

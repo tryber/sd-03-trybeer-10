@@ -6,9 +6,9 @@ const userLogin = rescue(async (req, res) => {
   const token = await userService.login(email, password);
   if (token.status) {
     const { status, message } = token;
-    return res.status(status).json({ message })
+    return res.status(status).json({ message });
   }
-  res.status(200).json( token )
+  res.status(200).json(token);
 });
 
 module.exports = {
