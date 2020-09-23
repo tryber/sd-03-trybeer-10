@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 const emailTest = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
@@ -17,6 +18,7 @@ function Login(props) {
 
   return (
     <div>
+      <Header title='Login'/>
       <form id='login-form' method='POST'>
         <label htmlFor="email">Email
           <input
