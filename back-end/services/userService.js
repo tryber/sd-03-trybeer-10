@@ -15,8 +15,8 @@ const validateLogin = (email, password) => {
 const login = async (userEmail, userPassword) => {
   const isValid = validateLogin(userEmail, userPassword);
   if (isValid) return isValid;
-
   const user = await userModel.login(userEmail);
+  console.log(user);
   if (!user || userPassword !== user.password) {
     return { status: 401, message: "Incorrect user email or password." }
   }
