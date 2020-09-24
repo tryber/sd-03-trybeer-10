@@ -79,7 +79,14 @@ function Register(props) {
               fetch('http://localhost:3001/register', { method: 'POST', body: JSON.stringify(body), headers })
                 .then((response) => response.json()
                   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
-                  .catch((err) => err.message ? setErrorMessage(err.message) : null);;
+                .catch((err) => {
+                  if (err.message) {
+                    setErrorMessage(err.message);
+                    return 'error';
+                  }
+                  return null;
+                });;
+            if (user === 'error') return;
             setLocalStorage(user);
             if (body.role === 'administrator') {
               return props.history.push('/admin/orders');
@@ -90,8 +97,7 @@ function Register(props) {
         >
           Cadastrar
           </button>
-        {errorMessage ? <p>{errorMessage}</p> : null}
-          <p>{errorMessage}</p>
+        <p>{errorMessage}</p>
       </form>
     </div>
   )
