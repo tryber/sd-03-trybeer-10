@@ -25,7 +25,7 @@ function Register(props) {
   return (
     <div>
       <h1>Registro</h1>
-      <form action="">
+      <form id='register-form' method='POST'>
         <label htmlFor="name">Nome
           <input
             data-testid="signup-name"
