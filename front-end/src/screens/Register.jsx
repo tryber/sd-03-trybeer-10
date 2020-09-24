@@ -8,6 +8,7 @@ function Register(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(0);
   const [role, setRole] = useState('client');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const valideteNewUser = () => (
     (name.length >= 12 && nameTest.test(name))
@@ -77,7 +78,8 @@ function Register(props) {
             const user = await
               fetch('http://localhost:3001/register', { method: 'POST', body: JSON.stringify(body), headers })
                 .then((response) => response.json()
-                  .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));;
+                  .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
+                  .catch((err) => err.message ? setErrorMessage(err.message) : null);;
             setLocalStorage(user);
             if (body.role === 'administrator') {
               return props.history.push('/admin/orders');
@@ -86,8 +88,10 @@ function Register(props) {
           }}
           disabled={!valideteNewUser()}
         >
-          CADASTRAR
+          Cadastrar
           </button>
+        {errorMessage ? <p>{errorMessage}</p> : null}
+          <p>{errorMessage}</p>
       </form>
     </div>
   )
