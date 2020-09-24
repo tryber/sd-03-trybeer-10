@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Login.css';
 
 const emailTest = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
@@ -16,10 +17,10 @@ function Login(props) {
   }
 
   return (
-    <div>
+    <div className="ContainerLogin">
       <h1>Login</h1>
-      <form id='login-form' method='POST'>
-        <label htmlFor="email">Email
+      <form className="FormLogin" id='login-form' method='POST'>
+        <label htmlFor="email">Email<br />
           <input
             data-testid="email-input"
             id="email"
@@ -27,8 +28,8 @@ function Login(props) {
             onChange={(event) => setEmail(event.target.value)}
           />
         </label><br />
-        <label htmlFor="password">Password
-        <input
+        <label htmlFor="password">Password<br />
+          <input
             data-testid="password-input"
             id="password"
             type="password"
@@ -36,6 +37,7 @@ function Login(props) {
           />
         </label><br />
         <button
+          className="SigninBtn"
           data-testid="signin-btn"
           type="button"
           onClick={async () => {
@@ -59,7 +61,7 @@ function Login(props) {
           ENTRAR
         </button><br />
         <Link to='/register'>
-          <button data-testid="no-account-btn">Ainda não tenho conta</button>
+          <button className="NoAccountBtn" data-testid="no-account-btn">Ainda não tenho conta</button>
         </Link>
       </form>
     </div>

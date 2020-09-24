@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../styles/Register.css';
 const emailTest = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 const nameTest = /[A-Z-a-z]+$/i;
 
@@ -23,10 +23,10 @@ function Register(props) {
   }
 
   return (
-    <div>
+    <div className="ContainerRegister">
       <h1>Registro</h1>
-      <form action="">
-        <label htmlFor="name">Nome
+      <form className="FormRegister" action="">
+        <label htmlFor="name">Nome<br />
           <input
             data-testid="signup-name"
             id="name"
@@ -34,7 +34,7 @@ function Register(props) {
             onChange={(event) => setName(event.target.value)}
           />
         </label><br />
-        <label htmlFor="email">Email
+        <label htmlFor="email">Email<br />
           <input
             data-testid="signup-email"
             id="email"
@@ -42,7 +42,7 @@ function Register(props) {
             onChange={(event) => setEmail(event.target.value)}
           />
         </label><br />
-        <label htmlFor="password">Password
+        <label htmlFor="password">Password<br />
           <input
             data-testid="signup-password"
             id="password"
@@ -66,6 +66,7 @@ function Register(props) {
           />
         </label><br />
         <button
+          className="SignupBtn"
           data-testid="signup-btn"
           type="button"
           onClick={async () => {
