@@ -47,7 +47,7 @@ const newUser = async (name, email, password, role) => {
   const existingEmail = await userModel.login(email);
 
   if (existingEmail) {
-    return { status: 403, message: 'This email already exists' };
+    return { status: 403, message: 'E-mail already in database.' };
   }
 
   const register = await userModel.register(name, email, password, role);
