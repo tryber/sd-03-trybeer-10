@@ -1,0 +1,15 @@
+.side-menu-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transition: 0.6s;
+  width: 200px;
+}
+
+.show-side-menu {
+  transform: translate(0px);
+}
+
+.hide-side-menu {
+  transform: translate(-200px);
+}
