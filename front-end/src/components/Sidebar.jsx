@@ -8,7 +8,7 @@ const Sidebar = () => {
     history.push("/login");
   };
   return (
-    <div>
+    <div className={ `side-menu-container ${sideMenu}` }>
       <Link to="/products">
         <button data-testid="side-menu-item-products">Produtos</button>
       </Link>

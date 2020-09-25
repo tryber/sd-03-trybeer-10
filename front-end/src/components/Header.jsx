@@ -18,6 +18,7 @@ function Header({ title }) {
   };
 
   const [sideMenu, setsideMenu] = React.useState('hide-side-menu');
+  
   return (
     <header>
       <h1 data-testid="top-title">{title}</h1>
