@@ -11,6 +11,16 @@ const userLogin = rescue(async (req, res) => {
   res.status(200).json(token);
 });
 
+const userUpdate = rescue(async (req, res) => {
+  const { name } = req.body;
+  const updatedUser = await userService.update(name, req.params.email, req.user.email);
+  if (updatedUser.status) {
+    const { status, message } = updatedUser;
+    return res.status(status).json({ message });
+  }
+  res.status(200).json(updatedUser);
+});
+
 const userRegister = rescue(async (req, res) => {
   const { name, email, password, role } = req.body;
   const newUser = await userService.newUser(name, email, password, role);
@@ -25,5 +35,6 @@ const userRegister = rescue(async (req, res) => {
 
 module.exports = {
   userLogin,
+  userUpdate,
   userRegister,
 };

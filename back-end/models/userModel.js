@@ -16,6 +16,17 @@ const login = async (Email) => (
     })
 );
 
+const updateName = async (email, name) => (
+  connection()
+    .then((db) => db
+      .getTable('users')
+      .update()
+      .set('name', name)
+      .where('email = :email')
+      .bind('email', email)
+      .execute())
+);
+
 const register = async (name, email, password, role) => (
   connection()
     .then((db) => db
@@ -27,5 +38,6 @@ const register = async (name, email, password, role) => (
 
 module.exports = {
   login,
+  updateName,
   register,
 };
