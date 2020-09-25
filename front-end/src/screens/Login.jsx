@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const emailTest = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
@@ -17,6 +17,7 @@ function Login(props) {
 
   return (
     <div>
+      <h1>Login</h1>
       <form id='login-form' method='POST'>
         <label htmlFor="email">Email
           <input
@@ -25,7 +26,7 @@ function Login(props) {
             type="email"
             onChange={(event) => setEmail(event.target.value)}
           />
-        </label>
+        </label><br />
         <label htmlFor="password">Password
         <input
             data-testid="password-input"
@@ -33,12 +34,11 @@ function Login(props) {
             type="password"
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </label><br />
         <button
           data-testid="signin-btn"
           type="button"
           onClick={async () => {
-            // const form = new FormData (document.getElementById('login-form'));
             const body = { "email": email, "password": password }
             const headers = new Headers({
               "Content-Type": "application/json",
@@ -57,9 +57,9 @@ function Login(props) {
           disabled={!validateLogin()}
         >
           ENTRAR
-        </button>
+        </button><br />
         <Link to='/register'>
-          <button data-testId="no-account-btn">Ainda não tenho conta</button>
+          <button data-testid="no-account-btn">Ainda não tenho conta</button>
         </Link>
       </form>
     </div>

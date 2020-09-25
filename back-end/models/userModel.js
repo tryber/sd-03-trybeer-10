@@ -9,9 +9,23 @@ const login = async (Email) => (
       .bind('email', Email)
       .execute())
     .then((fetch) => fetch.fetchOne())
-    .then(([name, email, password, role]) => ({ name, email, password, role }))
+    .then((result) => {
+      if (!result) return null;
+      const [name, email, password, role] = result;
+      return { name, email, password, role };
+    })
+);
+
+const register = async (name, email, password, role) => (
+  connection()
+    .then((db) => db
+      .getTable('users')
+      .insert(['name', 'email', 'password', 'role'])
+      .values(name, email, password, role)
+      .execute())
 );
 
 module.exports = {
   login,
+  register,
 };
