@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { MainContext } from '../context/context';
+import Header from '../components/Header';
 
 const Products = (props) => {
   const { products, setProducts } = useContext(MainContext);
@@ -67,11 +68,12 @@ const Products = (props) => {
   if(!loggedIn) return <Redirect to="/login" />
   return (
     <div>
+      <Header title='TryBeer' />
       {products.map((product, ind) =>{
         const index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
         return (<div>
           <h3 data-testid={`${ind}-product-name`}>{product.name}</h3>
-          <img data-testid={`${ind}-product-img`} src={product.url_image} width='125px' />
+          <img data-testid={`${ind}-product-img`} src={product.urlImage} width='125px' />
           <h4 data-testid={`${ind}-product-price`}>{`R$ ${product.price.toFixed(2).toString().replace('.', ',')}`}</h4>
           <button type="button" data-testid={`${ind}-product-plus`} onClick={() => addProduct(product)}>+</button>
         <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>

@@ -2,10 +2,10 @@ require('dotenv/config');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
 const userController = require('./controllers/userController');
 const productController = require('./controllers/productController');
 const auth = require('./services/auth');
-const path = require('path');
 
 const app = express();
 app.use(cors());

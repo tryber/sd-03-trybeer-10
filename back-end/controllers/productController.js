@@ -1,5 +1,5 @@
-const productModel = require("../models/productModel");
 const rescue = require('express-rescue');
+const productModel = require('../models/productModel');
 
 const listAllProducts = rescue(async (_req, res) => {
   const productsList = await productModel.fetchAllProducts();

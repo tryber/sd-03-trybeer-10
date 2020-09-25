@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const MainContext = createContext(null);
 
@@ -15,7 +16,9 @@ const MainProvider = ({ children }) => {
     setCarts,
   };
 
-  return <MainContext.Provider value={context}>{children}</MainContext.Provider>;
+  return <MainContext.Provider value={ context }>{ children }</MainContext.Provider>;
 };
+
+MainProvider.propTypes = { children: PropTypes.node.isRequired };
 
 export default MainProvider;

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
 
 const Profile = () => {
 
   const currentUser = JSON.parse(localStorage.getItem('user')); 
   const[email, setEmail] = useState(currentUser.email);
   const[name, setName] = useState(currentUser.name);
+  const[succesMessage, setSuccesMessage] = useState('');
 
   const setLocalStorage = (user) => {
     localStorage.setItem('user', JSON.stringify(user))
@@ -12,6 +14,7 @@ const Profile = () => {
 
   return (
     <div>
+      <Header title='Meu perfil' />
       <form id='update-form'>
         <label htmlFor="email">Email
           <input
@@ -45,12 +48,14 @@ const Profile = () => {
                 .then((response) => response.json()
                   .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))));;
             setLocalStorage(user);
+            setSuccesMessage('Atualização concluída com sucesso');
           }}
           disabled={name === currentUser.name}
         >
-          SALVAR
+          Salvar
         </button>
       </form>
+      <p>{succesMessage}</p>
     </div>
   )
 };

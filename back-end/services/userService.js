@@ -55,8 +55,7 @@ const newUser = async (name, email, password, role) => {
 };
 
 const update = async (name, paramsEmail, email) => {
-
-  if(paramsEmail !== email) {
+  if (paramsEmail !== email) {
     return { status: 403, message: 'Wrong user token.' };
   }
 
@@ -65,10 +64,11 @@ const update = async (name, paramsEmail, email) => {
   const { password, ...data } = await userModel.login(email);
 
   return data;
-}
+};
 
 module.exports = {
   login,
   newUser,
   valideteNewUser,
+  update,
 };
