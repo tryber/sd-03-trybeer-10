@@ -9,7 +9,11 @@ const login = async (Email) => (
       .bind('email', Email)
       .execute())
     .then((fetch) => fetch.fetchOne())
-    .then(([name, email, password, role]) => ({ name, email, password, role }))
+    .then((result) => {
+      if (!result) return null;
+      const [ name, email, password, role ] = result;
+      return { name, email, password, role };
+    })
 );
 
 const updateName = async (email, name) => (
