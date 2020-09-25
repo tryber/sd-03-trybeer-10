@@ -14,7 +14,6 @@ const Products = (props) => {
   const [loggedIn, setLoggedIn] = useState(true);
   const currentUser = JSON.parse(localStorage.getItem('user'));
   let cartIndex = carts.findIndex((e) => currentUser ? e.user === currentUser.email : -1);
-  console.log(cartIndex);
   useEffect(() => {
     let headers;
     if(currentUser){
@@ -70,16 +69,17 @@ const Products = (props) => {
     <div>
       <Header title='TryBeer' />
       {products.map((product, ind) =>{
-        const index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
+        let index;
+        if (carts[cartIndex].list) index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
         return (<div>
           <h3 data-testid={`${ind}-product-name`}>{product.name}</h3>
           <img data-testid={`${ind}-product-img`} src={product.urlImage} width='125px' />
           <h4 data-testid={`${ind}-product-price`}>{`R$ ${product.price.toFixed(2).toString().replace('.', ',')}`}</h4>
-          <button type="button" data-testid={`${ind}-product-plus`} onClick={() => addProduct(product)}>+</button>
-        <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>
-          { carts[cartIndex].list[index] ? carts[cartIndex].list[index].qty : 0}
-        </span>
           <button type="button" data-testid={`${ind}-product-minus`} onClick={() => removeProduct(product)}>-</button>
+          <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>
+            { (carts[cartIndex].list[index]) ? carts[cartIndex].list[index].qty : 0}
+          </span>
+          <button type="button" data-testid={`${ind}-product-plus`} onClick={() => addProduct(product)}>+</button>
         </div>)}
       )}
       <div style={{
