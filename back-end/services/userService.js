@@ -28,7 +28,6 @@ const login = async (userEmail, userPassword) => {
   if (isValid) return isValid;
 
   const user = await userModel.login(userEmail);
-
   if (!user || userPassword !== user.password) {
     return { status: 401, message: 'Incorrect user email or password.' };
   }
@@ -55,8 +54,21 @@ const newUser = async (name, email, password, role) => {
   return register;
 };
 
+const update = async (name, paramsEmail, email) => {
+  if (paramsEmail !== email) {
+    return { status: 403, message: 'Wrong user token.' };
+  }
+
+  await userModel.updateName(email, name);
+
+  const { password, ...data } = await userModel.login(email);
+
+  return data;
+};
+
 module.exports = {
   login,
   newUser,
   valideteNewUser,
+  update,
 };

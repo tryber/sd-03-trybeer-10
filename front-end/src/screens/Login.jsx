@@ -18,7 +18,6 @@ function Login(props) {
 
   return (
     <div>
-      <Header title='Login'/>
       <h1>Login</h1>
       <form id='login-form' method='POST'>
         <label htmlFor="email">Email
