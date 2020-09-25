@@ -21,7 +21,20 @@ const userUpdate = rescue(async (req, res) => {
   res.status(200).json(updatedUser);
 });
 
+const userRegister = rescue(async (req, res) => {
+  const { name, email, password, role } = req.body;
+  const newUser = await userService.newUser(name, email, password, role);
+
+  if (newUser.status) {
+    const { status, message } = newUser;
+    return res.status(status).json({ message });
+  }
+
+  res.status(201).json(newUser);
+});
+
 module.exports = {
   userLogin,
   userUpdate,
+  userRegister,
 };

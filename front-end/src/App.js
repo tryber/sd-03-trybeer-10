@@ -4,16 +4,20 @@ import Login from './screens/Login';
 import Profile from './screens/Profile';
 import MainContext from './context/context';
 import Products from './screens/Products';
+import Register from './screens/Register';
 
 function App() {
   return (
     <MainContext>
       <Router>
         <Switch>
-          <Route exact path ="/products" component={ Products } />
-          <Route path="/login" component={ Login } />
-          <Route path="/profile" component={ Profile } />
-          <Route exact path="/"> <Redirect to="/login" /> </Route>
+          <center>
+            <Route exact path ="/products" component={ Products } />
+            <Route path="/login" component={ Login } />
+            <Route path="/profile" component={ Profile } />
+            <Route path="/register" component={ Register } />
+            <Route exact path="/"> <Redirect to="/login" /> </Route>
+          </center>
         </Switch>
       </Router>
     </MainContext>

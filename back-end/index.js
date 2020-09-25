@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.post('/login', userController.userLogin);
+app.post('/register', userController.userRegister);
 
 app.put('/users/:email', auth, userController.userUpdate);
 

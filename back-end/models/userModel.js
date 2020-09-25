@@ -11,7 +11,7 @@ const login = async (Email) => (
     .then((fetch) => fetch.fetchOne())
     .then((result) => {
       if (!result) return null;
-      const [ name, email, password, role ] = result;
+      const [name, email, password, role] = result;
       return { name, email, password, role };
     })
 );
@@ -27,7 +27,17 @@ const updateName = async (email, name) => (
       .execute())
 );
 
+const register = async (name, email, password, role) => (
+  connection()
+    .then((db) => db
+      .getTable('users')
+      .insert(['name', 'email', 'password', 'role'])
+      .values(name, email, password, role)
+      .execute())
+);
+
 module.exports = {
   login,
   updateName,
+  register,
 };
