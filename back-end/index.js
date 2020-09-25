@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/login', userController.userLogin);
+app.post('/register', userController.userRegister);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => { console.log(`Listening on ${PORT}`); });
