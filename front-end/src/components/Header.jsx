@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import burgerMenuIcon from '../images/icons/burgerMenuIcon.svg';
 import "../styles/sidebar.css";
+// import Sidebar from './Sidebar';
 
 const toggleMenu = (sideMenu, setsideMenu) => {
   if (sideMenu === 'hide-side-menu') return setsideMenu('show-side-menu');
@@ -13,7 +14,7 @@ function Header({ title }) {
   const history = useHistory();
   const handleLogout = () => {
     localStorage.removeItem('user');
-    history.push("/logout");
+    history.push("/login");
   };
 
   const [sideMenu, setsideMenu] = React.useState('hide-side-menu');
@@ -24,7 +25,7 @@ function Header({ title }) {
         alt="Menu button" src={burgerMenuIcon}
         onClick={() => toggleMenu(sideMenu, setsideMenu)}
       />
-    <div class={ `side-menu-container ${sideMenu}` }>
+    <div className={ `side-menu-container ${sideMenu}` }>
       <Link to="/products">
         <button data-testid="side-menu-item-products">Produtos</button>
       </Link>
@@ -34,7 +35,7 @@ function Header({ title }) {
       <Link to="/profile">
         <button data-testid="side-menu-item-my-profile">Meu Perfil</button>
       </Link>
-      <button data-testid="side-menu-item-logout" type="button" onclick={handleLogout}>
+      <button data-testid="side-menu-item-logout" type="button" onClick={() => handleLogout()}>
         Sair
       </button>
     </div>

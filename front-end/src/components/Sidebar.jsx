@@ -5,7 +5,7 @@ const Sidebar = () => {
   const history = useHistory();
   const handleLogout = () => {
     localStorage.removeItem('user');
-    history.push("/logout");
+    history.push("/login");
   };
   return (
     <div>
@@ -19,7 +19,7 @@ const Sidebar = () => {
         <button data-testid="side-menu-item-my-profile">Meu Perfil</button>
       </Link>
       <Link to="/login">
-        <button data-testid="side-menu-item-logout" onclick={handleLogout}>Sair</button>
+        <button data-testid="side-menu-item-logout" onClick={() => handleLogout()}>Sair</button>
       </Link>
     </div>
   )
