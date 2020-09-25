@@ -5,7 +5,7 @@ import "../styles/sidebar.css";
 // import Sidebar from './Sidebar';
 
 const toggleMenu = (sideMenu, setsideMenu) => {
-  if (sideMenu === 'hide-side-menu') return setsideMenu('show-side-menu');
+  if (sideMenu === 'hide-side-menu') return setsideMenu('');
   return setsideMenu('hide-side-menu');
 };
 

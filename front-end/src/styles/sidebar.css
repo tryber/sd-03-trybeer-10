@@ -6,10 +6,6 @@
   width: 200px;
 }
 
-.show-side-menu {
-  transform: translate(0px);
-}
-
 .hide-side-menu {
-  transform: translate(-200px);
+  display: none;
 }
