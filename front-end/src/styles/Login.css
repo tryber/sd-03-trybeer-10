@@ -1,0 +1,30 @@
+.ContainerLogin {
+  background-image: url(../images/FundoLogin.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ContainerLogin h1 {
+  padding: 15% 0 0;
+}
+
+.FormLogin {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding-bottom: 15%;
+}
+
+.SigninBtn {
+  background-color: chartreuse;
+  border-color: chartreuse;
+  padding: 5px 10px;
+  width: 150px;
+}
+
+.NoAccountBtn {
+  background-color: white;
+  border-style: none;
+  padding: 5px;
+}

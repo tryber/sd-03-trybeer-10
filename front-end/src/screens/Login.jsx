@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
+import '../styles/Login.css';
 
 const emailTest = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
@@ -8,19 +8,26 @@ function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    const carts = localStorage.getItem('carts');
+    if(!carts || carts.length < 1)
+    localStorage.setItem('carts', JSON.stringify([]));
+  }, [])
+
   const validateLogin = () => (
     password.length >= 6 && email.match(emailTest)
   );
 
   const setLocalStorage = (user) => {
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
+
   return (
-    <div>
+    <div className="ContainerLogin">
       <h1>Login</h1>
-      <form id='login-form' method='POST'>
-        <label htmlFor="email">Email
+      <form className="FormLogin" id='login-form' method='POST'>
+        <label htmlFor="email">Email<br />
           <input
             data-testid="email-input"
             id="email"
@@ -28,8 +35,8 @@ function Login(props) {
             onChange={(event) => setEmail(event.target.value)}
           />
         </label><br />
-        <label htmlFor="password">Password
-        <input
+        <label htmlFor="password">Password<br />
+          <input
             data-testid="password-input"
             id="password"
             type="password"
@@ -37,6 +44,7 @@ function Login(props) {
           />
         </label><br />
         <button
+          className="SigninBtn"
           data-testid="signin-btn"
           type="button"
           onClick={async () => {
@@ -60,7 +68,7 @@ function Login(props) {
           ENTRAR
         </button><br />
         <Link to='/register'>
-          <button data-testid="no-account-btn">Ainda não tenho conta</button>
+          <button className="NoAccountBtn" data-testid="no-account-btn">Ainda não tenho conta</button>
         </Link>
       </form>
     </div>
