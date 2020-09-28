@@ -1,6 +1,25 @@
+.header {
+  background-color: #100F0F;
+  color: white;
+}
+
+.burger-btn {
+  background-color: #100F0F;
+  float: left;
+  margin-left: 8px;
+  margin-top: 6px;
+}
+
+.top-title {
+  margin-right: 30px;
+}
+
 .side-menu-container {
+  background-color: #100F0F;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  margin-top: -20px;
   position: absolute;
   transition: 0.6s;
   width: 200px;
@@ -8,4 +27,17 @@
 
 .hide-side-menu {
   display: none;
+}
+
+.menu-item {
+  background-color: rgba(24, 23, 23, 0.6);
+  color: white;
+  font-size: large;
+  height: 50px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.logout-btn {
+  margin-top: 260px;
 }
