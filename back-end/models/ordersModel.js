@@ -4,7 +4,7 @@ const fetchOrders = async () => {
   const db = await connection();
 
   const fetch = await db.getTable('sales').select(['id', 'total_price', 'delivery_number', 'sale_date'])
-    .execute();
+    .orderBy('id').execute();
 
   const recipes = fetch.fetchAll();
 

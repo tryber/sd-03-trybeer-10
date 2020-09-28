@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 import MainProvider from './context/context';
 import Products from './screens/Products';
 import Register from './screens/Register';
+import Orders from './screens/Orders';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/">
               <Redirect to="/login" />
             </Route>
+            <Route path='/orders' component={ Orders }/>
           </center>
         </Switch>
       </Router>

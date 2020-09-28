@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { MainContext } from '../context/context';
 import Header from '../components/Header';
 
-const Products = (props) => {
+const Products = () => {
   const { products, setProducts } = useContext(MainContext);
   let ini = [];
   if(localStorage.getItem('carts')) {
@@ -73,7 +73,7 @@ const Products = (props) => {
         if (carts[cartIndex] && carts[cartIndex].list) index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
         return (<div>
           <h3 data-testid={`${ind}-product-name`}>{product.name}</h3>
-          <img data-testid={`${ind}-product-img`} src={product.urlImage} width='125px' />
+          <img data-testid={`${ind}-product-img`} src={product.urlImage} alt="Produto" width='125px' />
           <h4 data-testid={`${ind}-product-price`}>{`R$ ${product.price.toFixed(2).toString().replace('.', ',')}`}</h4>
           <button type="button" data-testid={`${ind}-product-minus`} onClick={() => removeProduct(product)}>-</button>
           <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>
