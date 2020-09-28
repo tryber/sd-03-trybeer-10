@@ -7,7 +7,7 @@ const Products = (props) => {
   const { products, setProducts } = useContext(MainContext);
   let ini = [];
   if(localStorage.getItem('carts')) {
-    ini = (JSON.parse(localStorage.getItem('carts'))); 
+    ini = (JSON.parse(localStorage.getItem('carts')));
   }
   const [carts, setCarts] = useState(ini);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -37,7 +37,7 @@ const Products = (props) => {
     if(carts[cartIndex])
     setTotalPrice(carts[cartIndex].list.reduce((acc, e) => acc + Number(e.price)*Number(e.qty), 0));
   }, [carts])
-  
+
   const addProduct = (product) => {
     const cartItemIndex = carts[cartIndex].list.findIndex((e) => e.id === product.id);
     const qty = Number(document.getElementById(`id-${product.id}-qty`).innerHTML);

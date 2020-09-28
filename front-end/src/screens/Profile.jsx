@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 const Profile = () => {
 
-  const currentUser = JSON.parse(localStorage.getItem('user')); 
+  const currentUser = JSON.parse(localStorage.getItem('user'));
   const[email, setEmail] = useState(currentUser.email);
   const[name, setName] = useState(currentUser.name);
   const[succesMessage, setSuccesMessage] = useState('');
