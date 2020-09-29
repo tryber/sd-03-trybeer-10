@@ -6,7 +6,12 @@
 }
 
 .ProductsCards {
+  height: 450px;
   width: 200px;
+}
+
+.ProductsCards img {
+  width: 150px;
 }
 
 .FooterProducts {

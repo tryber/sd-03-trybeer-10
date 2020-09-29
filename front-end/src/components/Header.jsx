@@ -25,7 +25,7 @@ function Header({ title }) {
         onClick={() => toggleMenu(sideMenu, setsideMenu)}
       />
       <h1 data-testid="top-title" className="TopTitle">{title}</h1>
-      <div className={ `SideMenuContainer ${sideMenu}` }>
+      <div className={ `side-menu-container ${sideMenu}` }>
         <Link to="/products">
           <button data-testid="side-menu-item-products" className="MenuItem">Produtos</button>
         </Link>
