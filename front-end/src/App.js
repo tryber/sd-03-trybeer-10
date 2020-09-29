@@ -22,7 +22,7 @@ function App() {
             <Route exact path="/">
               <Redirect to="/login" />
             </Route>
-            <Route path='/orders' component={ Orders }/>
+            <Route path="/orders" component={ Orders } />
           </center>
         </Switch>
       </Router>

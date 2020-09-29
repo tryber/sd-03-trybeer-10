@@ -30,7 +30,7 @@ const Products = () => {
       .then((response) => response.json()
         .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
       .then((data) => setProducts(data))
-      .catch((err) => setLoggedIn(false))
+      .catch((_err) => setLoggedIn(false))
   }, [])
 
   useEffect(() => {
