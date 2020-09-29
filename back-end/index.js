@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const userController = require('./controllers/userController');
 const productController = require('./controllers/productController');
+const orderController = require('./controllers/orderController');
 const auth = require('./services/auth');
 
 const app = express();
@@ -21,6 +22,8 @@ app.post('/register', userController.userRegister);
 app.put('/users/:email', auth, userController.userUpdate);
 
 app.get('/products', auth, productController.listAllProducts);
+
+app.get('/orders/:id', auth, orderController.orderDetail);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => { console.log(`Listening on ${PORT}`); });

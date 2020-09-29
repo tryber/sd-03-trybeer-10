@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 
 function OrderDetail() {
+  const [loggedIn, setLoggedIn] = useState(true);
+  if(!loggedIn) return <Redirect to="/login"/>
+  
   return (
     <div>
       <Header title="Detalhes de Pedido"/>
