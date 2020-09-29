@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 
 function Orders() {
@@ -6,11 +6,14 @@ function Orders() {
   return (
     <div>
       <Header title='Meus Pedidos' />
-      <div data-testid="0-order-card-container">
-        <p data-testid="0-order-number">Numero do pedido</p>
-        <p data-testid="0-order-date">Data do pedido</p>
-        <p data-testid="0-order-total-value">Valor do pedido</p>
-      </div>
+      {/* {orders.map((order, index) => (
+        <div data-testid={`${index}-order-card-container`}>
+          <p data-testid={`${index}-order-number`}>{order.delivery_number}</p>
+          <p data-testid={`${index}-order-date`}>{order.sale_date}</p>
+          <p data-testid={`${index}-order-total-value`}>{order.total_price}</p>
+        </div>
+      ))
+      } */}
     </div>
   )
 };
