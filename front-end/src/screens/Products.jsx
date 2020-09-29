@@ -4,7 +4,7 @@ import { MainContext } from '../context/context';
 import Header from '../components/Header';
 
 const Products = (props) => {
-  const { products, setProducts } = useContext(MainContext);
+  const { products, setProducts, okMessage } = useContext(MainContext);
   let ini = [];
   if(localStorage.getItem('carts')) {
     ini = (JSON.parse(localStorage.getItem('carts'))); 
@@ -68,6 +68,7 @@ const Products = (props) => {
   return (
     <div>
       <Header title='TryBeer' />
+      {okMessage ? <h3>Compra realizada com sucesso!</h3> : null}
       {products.map((product, ind) =>{
         let index;
         if (carts[cartIndex] && carts[cartIndex].list) index = carts[cartIndex].list.findIndex((e) => e.id === product.id);

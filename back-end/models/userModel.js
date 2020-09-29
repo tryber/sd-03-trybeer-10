@@ -4,15 +4,15 @@ const login = async (Email) => (
   connection()
     .then((db) => db
       .getTable('users')
-      .select(['name', 'email', 'password', 'role'])
+      .select(['id', 'name', 'email', 'password', 'role'])
       .where('email LIKE :email')
       .bind('email', Email)
       .execute())
     .then((fetch) => fetch.fetchOne())
     .then((result) => {
       if (!result) return null;
-      const [name, email, password, role] = result;
-      return { name, email, password, role };
+      const [id, name, email, password, role] = result;
+      return { id, name, email, password, role };
     })
 );
 
