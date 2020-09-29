@@ -27,8 +27,9 @@ function Register(props) {
     <div className="ContainerRegister">
       <h1>Registro</h1>
       <form id="register-form" className="FormRegister">
-        <label htmlFor="name">Nome
+        <label htmlFor="name">Nome<br />
           <input
+            className="InputRegister"
             data-testid="signup-name"
             id="name"
             type="text"
@@ -37,6 +38,7 @@ function Register(props) {
         </label><br />
         <label htmlFor="email">Email<br />
           <input
+            className="InputRegister"
             data-testid="signup-email"
             id="email"
             type="email"
@@ -45,6 +47,7 @@ function Register(props) {
         </label><br />
         <label htmlFor="password">Password<br />
           <input
+            className="InputRegister"
             data-testid="signup-password"
             id="password"
             type="password"

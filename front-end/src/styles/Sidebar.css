@@ -1,20 +1,20 @@
-.header {
+.Header {
   background-color: #100F0F;
   color: white;
 }
 
-.burger-btn {
+.BurgerBtn {
   background-color: #100F0F;
   float: left;
   margin-left: 8px;
   margin-top: 6px;
 }
 
-.top-title {
+.TopTitle {
   margin-right: 30px;
 }
 
-.side-menu-container {
+.SideMenuContainer {
   background-color: #100F0F;
   display: flex;
   flex-direction: column;
@@ -25,11 +25,11 @@
   width: 200px;
 }
 
-.hide-side-menu {
+.HideSideMenu {
   display: none;
 }
 
-.menu-item {
+.MenuItem {
   background-color: rgba(24, 23, 23, 0.6);
   color: white;
   font-size: large;
@@ -38,6 +38,6 @@
   width: 100%;
 }
 
-.logout-btn {
+.LogoutBtn {
   margin-top: 260px;
 }

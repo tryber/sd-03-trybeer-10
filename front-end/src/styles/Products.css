@@ -1,0 +1,19 @@
+.ProductsContainer {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+}
+
+.ProductsCards {
+  width: 200px;
+}
+
+.FooterProducts {
+  position: fixed;
+  background-color: green;
+  height: 50px;
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
