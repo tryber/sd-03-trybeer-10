@@ -1,8 +1,6 @@
 const connection = require('./connection');
 const connectionPlain = require('./connectionPlain');
 
-
-
 const getOrderDetail = async (SaleId) => connectionPlain()
   .then((session) => session
     .sql(`
@@ -13,10 +11,9 @@ const getOrderDetail = async (SaleId) => connectionPlain()
       WHERE sp.sale_id = ?;
     `)
     .bind(SaleId)
-    .execute(),)
+    .execute())
   .then((results) => results.fetchAll())
-  .then((products) => products.map(([saleId, productId, quantity, name, price]) =>
-    ({ saleId, productId, quantity, name, price })));
+  .then((products) => products.map(([saleId, productId, quantity, name, price]) => ({ saleId, productId, quantity, name, price })));
 // supported by Gustavo Figueiredo, and ckecked this is the only way of using "join" at https://stackoverflow.com/questions/55571181/how-to-use-join-query-in-sql-using-x-devapi-and-nodejs.
 
 const getOrderById = async (Id) => connection()
@@ -25,10 +22,10 @@ const getOrderById = async (Id) => connection()
     .select(['id', 'user_id', 'total_price', 'delivery_address', 'delivery_number', 'sale_date', 'status'])
     .where('id = :id')
     .bind('id', Id)
-    .execute(),)
+    .execute())
   .then((results) => results.fetchAll()[0] || [])
-  .then(([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) =>
-    id ? ({ id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status }) : null)
+  .then(([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) => (id
+    ? ({ id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status }) : null))
   .catch((err) => { console.error(err); });
 
 module.exports = {

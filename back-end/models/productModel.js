@@ -17,7 +17,7 @@ const getProductById = async (Id) => connection()
     .select(['id', 'name', 'price'])
     .where('id = :id')
     .bind('id', Id)
-    .execute(),)
+    .execute())
   .then((results) => results.fetchAll()[0] || [])
   .then(([id, name, price]) => (id ? ({ id, name, price }) : null))
   .catch((err) => { console.error(err); });
