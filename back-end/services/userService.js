@@ -39,8 +39,8 @@ const login = async (userEmail, userPassword) => {
   return { token, name, email, role };
 };
 
-const newUser = async (name, email, password, role) => {
-  const validate = valideteNewUser(name, email, password);
+const newUser = async (name, email, Password, role) => {
+  const validate = valideteNewUser(name, email, Password);
   if (validate) return validate;
 
   const existingEmail = await userModel.login(email);
@@ -49,9 +49,11 @@ const newUser = async (name, email, password, role) => {
     return { status: 403, message: 'E-mail already in database.' };
   }
 
-  const register = await userModel.register(name, email, password, role);
+  await userModel.register(name, email, Password, role);
 
-  return register;
+  const data = await login(email, Password);
+
+  return data;
 };
 
 const update = async (name, paramsEmail, email) => {

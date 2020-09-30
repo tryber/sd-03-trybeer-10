@@ -18,10 +18,12 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.post('/login', userController.userLogin);
 app.post('/register', userController.userRegister);
+app.post('/orders', auth, orderController.registerNewSale);
 
 app.put('/users/:email', auth, userController.userUpdate);
 
 app.get('/products', auth, productController.listAllProducts);
+app.get('/orders', auth, orderController.listAllOrders);
 
 app.get('/orders/:id', auth, orderController.orderDetail);
 

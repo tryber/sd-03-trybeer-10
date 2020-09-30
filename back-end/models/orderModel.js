@@ -1,6 +1,39 @@
 const connection = require('./connection');
 const connectionPlain = require('./connectionPlain');
 
+const registerSale = async (userId, price, address, number, date, satus = 'Pendente') => {
+  const db = await connection();
+
+  return db
+    .getTable('sales')
+    .insert(['user_id', 'total_price', 'delivery_address', 'delivery_number', 'sale_date', 'status'])
+    .values(userId, price, address, number, date, satus)
+    .execute()
+    .then((result) => result.getAutoIncrementValue());
+};
+
+const registerSaleProduct = async (saleId, productId, qty) => {
+  const db = await connection();
+
+  return db
+    .getTable('sales_products')
+    .insert(['sale_id', 'product_id', 'quantity'])
+    .values(saleId, productId, qty)
+    .execute();
+};
+
+const fetchOrders = async () => {
+  const db = await connection();
+  const fetch = await db.getTable('sales').select(['id', 'total_price', 'sale_date'])
+    .orderBy('id')
+    .execute();
+  const recipes = fetch.fetchAll();
+
+  return recipes.map(([id, totalPrice, saleDate]) => (
+    { id, totalPrice, saleDate }
+  ));
+};
+
 const getOrderDetail = async (SaleId) => connectionPlain()
   .then((session) => session
     .sql(`
@@ -29,6 +62,9 @@ const getOrderById = async (Id) => connection()
   .catch((err) => { console.error(err); });
 
 module.exports = {
+  registerSale,
+  registerSaleProduct,
+  fetchOrders,
   getOrderDetail,
   getOrderById,
 };
