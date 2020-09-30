@@ -36,8 +36,8 @@ const Checkout = (props) => {
     <div>
       <Header title='Finalizar Pedido' />
       {(list.length === 0) ? <h2>Não há produtos no carrinho</h2> : null}
-      {list.map((product, ind) => 
-        <div> 
+      {list.map((product, ind) =>
+        <div>
           <h4 data-testid={`${ind}-product-name`} >{product.name}</h4>
           <h4 data-testid={`${ind}-product-total-value`}>{`R$ ${(product.price*product.qty).toFixed(2).toString().replace('.', ',')}`}</h4>
           <p data-testid={`${ind}-product-unit-price`}>{`(R$ ${product.price.toFixed(2).toString().replace('.', ',')} un)`}</p>
