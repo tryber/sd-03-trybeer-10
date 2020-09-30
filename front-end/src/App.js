@@ -7,6 +7,8 @@ import Profile from './screens/Profile';
 import MainProvider from './context/context';
 import Products from './screens/Products';
 import Register from './screens/Register';
+import Checkout from './screens/Checkout';
+import Orders from './screens/Orders';
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
       <Router>
         <Switch>
           <center>
+            <Route exact path="/checkout" component={ Checkout } />
             <Route exact path="/products" component={ Products } />
             <Route path="/login" component={ Login } />
             <Route path="/profile" component={ Profile } />
@@ -21,6 +24,7 @@ function App() {
             <Route exact path="/">
               <Redirect to="/login" />
             </Route>
+            <Route path="/orders" component={ Orders } />
           </center>
         </Switch>
       </Router>

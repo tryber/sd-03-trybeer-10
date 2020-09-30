@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import burgerMenuIcon from '../images/icons/burgerMenuIcon.svg';
-import "../styles/sidebar.css";
+import "../styles/Sidebar.css";
 // import Sidebar from './Sidebar';
 
 const toggleMenu = (sideMenu, setsideMenu) => {
@@ -18,7 +18,7 @@ function Header({ title }) {
   };
 
   const [sideMenu, setsideMenu] = React.useState('hide-side-menu');
-  
+
   return (
     <header className="header">
       <img data-testid="top-hamburguer" className="burger-btn"
