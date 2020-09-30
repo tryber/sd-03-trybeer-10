@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const userController = require('./controllers/userController');
 const productController = require('./controllers/productController');
+const saleController = require('./controllers/saleController');
 const orderController = require('./controllers/orderController');
 const auth = require('./services/auth');
 
@@ -18,6 +19,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.post('/login', userController.userLogin);
 app.post('/register', userController.userRegister);
+app.post('/orders', auth, saleController.registerNewSale);
 
 app.put('/users/:email', auth, userController.userUpdate);
 
