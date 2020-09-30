@@ -1,11 +1,11 @@
-const orderModel = require('../models/orderModel');
+const orderService = require('../services/orderService');
 
-const orderDetail = async (req, res) => {
+const getOrderDetail = async (req, res) => {
   const { id } = req.params;
-  const order = await orderModel.getOrderById(id);
-  return res.status(200).json(order);
+  const orderDetail = await orderService.getOrderDetail(id);
+  return res.status(200).json(orderDetail);
 };
 
 module.exports = {
-  orderDetail,
+  getOrderDetail,
 };
