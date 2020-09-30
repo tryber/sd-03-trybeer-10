@@ -10,12 +10,11 @@ const config = {
   socketPath: '/var/run/mysqld/mysqld.sock',
 };
 
-const connection = async () =>
-  mysqlx.getSession(config)
-    .catch((err) => {
-      console.error(err);
-      process.exit(1);
-    });
+const connection = async () => mysqlx.getSession(config)
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 
 module.exports = connection;
 // supported by Gustavo Figueiredo.
