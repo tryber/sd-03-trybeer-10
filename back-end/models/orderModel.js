@@ -41,12 +41,14 @@ const getOrderDetail = async (SaleId) => connectionPlain()
       FROM Trybeer.sales_products AS sp
       INNER JOIN Trybeer.products AS pr
       ON sp.product_id = pr.id
-      WHERE sp.sale_id = ?;
+      WHERE sp.sale_id = ${SaleId};
     `)
-    .bind(SaleId)
     .execute())
   .then((results) => results.fetchAll())
-  .then((products) => products.map(([saleId, productId, quantity, name, price]) => ({ saleId, productId, quantity, name, price })));
+  .then((products) => products.map(([saleId, productId, quantity, name, price]) => ({
+    saleId, productId, quantity, name, price,
+  })))
+  .catch((err) => console.log(`ESSE FOI O ERRO: ${err}`));
 // supported by Gustavo Figueiredo, and ckecked this is the only way of using "join" at https://stackoverflow.com/questions/55571181/how-to-use-join-query-in-sql-using-x-devapi-and-nodejs.
 
 const getOrderById = async (Id) => connection()
