@@ -25,7 +25,7 @@ app.put('/users/:email', auth, userController.userUpdate);
 app.get('/products', auth, productController.listAllProducts);
 app.get('/orders', auth, orderController.listAllOrders);
 
-app.get('/orders/:id', auth, orderController.orderDetail);
+app.get('/orders/:id', auth, orderController.getOrderDetail);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => { console.log(`Listening on ${PORT}`); });
