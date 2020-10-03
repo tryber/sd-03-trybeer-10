@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 import MainProvider from './context/context';
 import Products from './screens/Products';
 import Register from './screens/Register';
+import OrderDetail from './screens/OrderDetail';
 import Checkout from './screens/Checkout';
 import Orders from './screens/Orders';
 
@@ -21,10 +22,11 @@ function App() {
             <Route path="/login" component={ Login } />
             <Route path="/profile" component={ Profile } />
             <Route path="/register" component={ Register } />
+            <Route path="/orders/:id" component={ OrderDetail } />
             <Route exact path="/">
               <Redirect to="/login" />
             </Route>
-            <Route path="/orders" component={ Orders } />
+            <Route exact path="/orders" component={ Orders } />
           </center>
         </Switch>
       </Router>
