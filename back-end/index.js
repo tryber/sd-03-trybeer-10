@@ -24,7 +24,7 @@ app.put('/users/:email', auth, userController.userUpdate);
 
 app.get('/products', auth, productController.listAllProducts);
 app.get('/orders', auth, orderController.listAllOrders);
-
+app.get('/admin/orders', auth, orderController.listAllOrders);
 app.get('/orders/:id', auth, orderController.getOrderDetail);
 
 const PORT = process.env.PORT || 3001;
