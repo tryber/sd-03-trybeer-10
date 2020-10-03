@@ -10,6 +10,7 @@ import Register from './screens/Register';
 import OrderDetail from './screens/OrderDetail';
 import Checkout from './screens/Checkout';
 import Orders from './screens/Orders';
+import AdminDetail from './screens/AdminDetail';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/profile" component={ Profile } />
             <Route path="/register" component={ Register } />
             <Route path="/orders/:id" component={ OrderDetail } />
+            <Route path="/admin/orders/:id" component={ AdminDetail } />
             <Route exact path="/">
               <Redirect to="/login" />
             </Route>

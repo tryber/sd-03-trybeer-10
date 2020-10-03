@@ -16,7 +16,7 @@ function OrderDetail(props) {
     fetch(`http://localhost:3001/orders/${props.match.params.id}`, { headers })
       .then((response) => response.json()
       .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
-      .then((data) => {console.log(data); return setOrderInfo(data)})
+      .then((data) => setOrderInfo(data))
       .catch((_err) => setLoggedIn(false))
   }, [])
 
@@ -35,6 +35,7 @@ function OrderDetail(props) {
       <Header title="Detalhes de Pedido"/>
       <h2 data-testid="order-number">Pedido {orderInfo.orderById.id}</h2>
       <h2 data-testid="order-date">{setTime(orderInfo.orderById.saleDate).toLocaleDateString('pt-BR', dateFormat)}</h2>
+      <h2 data-testid="order-status">{orderInfo.orderById.status}</h2>
         {orderInfo.orderDetail.map(({ quantity, name, price }, index) =>
       <table>
         <tr>
@@ -50,6 +51,17 @@ function OrderDetail(props) {
         )
       }
       <h3 data-testid="order-total-value">Total {`R$ ${(Math.round((orderInfo.orderById.totalPrice)*100)/100).toFixed(2).toString().replace('.', ',')}`}</h3>
+      {orderInfo.orderById.status === 'Pendente' ? <button data-testid="mark-as-delivered-btn" onClick={async () => {
+        const headers = new Headers({ "Authorization": currentUser.token });
+        await fetch(`http://localhost:3001/orders/${orderInfo.orderById.id}`, { method: 'PUT', headers })
+          .catch((err) => console.log(err));;
+        setOrderInfo({ ...orderInfo, orderById: { ...orderInfo.orderById, status: 'Entregue' }});
+        }}>
+          Marcar como entregue
+        </button> 
+        : 
+        null
+      }
     </div>
     :
     <p>Carregando...</p>

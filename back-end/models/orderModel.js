@@ -63,10 +63,22 @@ const getOrderById = async (Id) => connection()
     ? ({ id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status }) : null))
   .catch((err) => { console.error(err); });
 
+const updateOrder = async (saleId) => (
+  connection()
+    .then((db) => db
+      .getTable('sales')
+      .update()
+      .set('status', 'Entregue')
+      .where('id = :saleId')
+      .bind('saleId', saleId)
+      .execute())
+);
+
 module.exports = {
   registerSale,
   registerSaleProduct,
   fetchOrders,
   getOrderDetail,
   getOrderById,
+  updateOrder,
 };
