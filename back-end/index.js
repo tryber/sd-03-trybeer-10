@@ -24,6 +24,7 @@ app.put('/users/:email', auth, userController.userUpdate);
 
 app.get('/products', auth, productController.listAllProducts);
 app.get('/orders', auth, orderController.listAllOrders);
+app.get('/admin/orders', auth, orderController.listAllOrders);
 
 app.get('/orders/:id', auth, orderController.getOrderDetail);
 app.put('/orders/:id', auth, orderController.updateOrder);
