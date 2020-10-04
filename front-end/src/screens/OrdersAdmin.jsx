@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Header from '../components/Header';
+import AdminHeader from '../components/AdminHeader';
 
 function OrdersAdmin(props) {
   const [ordersAdminList, setOrdersAdminList] = useState([]);
@@ -24,7 +24,7 @@ function OrdersAdmin(props) {
 
   return (
     <div>
-      <Header title='Pedidos' />
+      <AdminHeader title='Pedidos' />
       {ordersAdminList.map((order, index) => (
         <Link to={`/admin/orders/${order.id}`}>
           <div data-testid={`${index}-order-card-container`}>

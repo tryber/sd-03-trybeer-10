@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import Header from '../components/Header';
+import AdminHeader from '../components/AdminHeader';
 
 function OrderDetail(props) {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -32,7 +32,7 @@ function OrderDetail(props) {
   
   return ( orderInfo ?
     <div>
-      <Header title="Detalhes de Pedido"/>
+      <AdminHeader title="Detalhes de Pedido"/>
       <h2 data-testid="order-number">Pedido {orderInfo.orderById.id}</h2>
       <h2 data-testid="order-date">{setTime(orderInfo.orderById.saleDate).toLocaleDateString('pt-BR', dateFormat)}</h2>
       <h2 data-testid="order-status">{orderInfo.orderById.status}</h2>
@@ -43,6 +43,9 @@ function OrderDetail(props) {
         </tr>
         <tr>
           <td data-testid={`${index}-product-name`}>{name}</td>
+        </tr>
+        <tr>
+          <td data-testid={`${index}-order-unit-price`}>{`(R$ ${price.toFixed(2).toString().replace('.', ',')})`}</td>
         </tr>
         <tr>
           <td data-testid={`${index}-product-total-value`}>{`R$ ${(Math.round((price*quantity)*100)/100).toFixed(2).toString().replace('.', ',')}`}</td>
