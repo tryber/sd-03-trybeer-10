@@ -12,6 +12,7 @@ import Checkout from './screens/Checkout';
 import Orders from './screens/Orders';
 import AdminDetail from './screens/AdminDetail';
 import OrdersAdmin from './screens/OrdersAdmin';
+import AdminProfile from './screens/AdminProfile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <center>
             <Route exact path="/checkout" component={ Checkout } />
             <Route exact path="/products" component={ Products } />
+            <Route exact path="/admin/profile" component={ AdminProfile } />
             <Route exact path="/admin/orders" component={ OrdersAdmin } />
             <Route path="/login" component={ Login } />
             <Route path="/profile" component={ Profile } />
