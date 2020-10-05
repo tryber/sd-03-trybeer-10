@@ -31,11 +31,7 @@ const Products = (props) => {
       .then((response) => response.json()
         .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
       .then((data) => setProducts(data))
-<<<<<<< HEAD
-      .catch((err) => setLoggedIn(false))
-=======
       .catch((_err) => setLoggedIn(false))
->>>>>>> 95c9b4352d2427e44665a1ffc283334cdc28ddda
   }, [])
 
   useEffect(() => {
@@ -74,20 +70,24 @@ const Products = (props) => {
   return (
     <div>
       <Header title='TryBeer' />
+      {okMessage ? <h3>Compra realizada com sucesso!</h3> : null}
       <section className="ProductsContainer">
-        {okMessage ? <h3>Compra realizada com sucesso!</h3> : null}
         {products.map((product, ind) => {
           let index;
           if (carts[cartIndex] && carts[cartIndex].list) index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
           return (<div className="ProductsCards">
-            <h3 data-testid={`${ind}-product-name`}>{product.name}</h3>
+            <div className="CardTitle">
+              <h3 data-testid={`${ind}-product-name`}>{product.name}</h3>
+            </div>
             <img data-testid={`${ind}-product-img`} src={product.urlImage} />
             <h4 data-testid={`${ind}-product-price`}>{`R$ ${product.price.toFixed(2).toString().replace('.', ',')}`}</h4>
-            <button type="button" data-testid={`${ind}-product-minus`} onClick={() => removeProduct(product)}>-</button>
-            <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>
-              {(carts[cartIndex] && carts[cartIndex].list[index]) ? carts[cartIndex].list[index].qty : 0}
-            </span>
-            <button type="button" data-testid={`${ind}-product-plus`} onClick={() => addProduct(product)}>+</button>
+            <div className="BtnCard">
+              <button className="BtnMinus" type="button" data-testid={`${ind}-product-minus`} onClick={() => removeProduct(product)}>-</button>
+              <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>
+                {(carts[cartIndex] && carts[cartIndex].list[index]) ? carts[cartIndex].list[index].qty : 0}
+              </span>
+              <button className="BtnPlus" type="button" data-testid={`${ind}-product-plus`} onClick={() => addProduct(product)}>+</button>
+            </div>
           </div>)
         }
         )}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import AdminHeader from '../components/AdminHeader';
+import '../styles/Orders.css';
 
 function OrdersAdmin(props) {
   const [ordersAdminList, setOrdersAdminList] = useState([]);
@@ -25,20 +26,22 @@ function OrdersAdmin(props) {
   return (
     <div>
       <AdminHeader title='Pedidos' />
-      {ordersAdminList.map((order, index) => (
-        <Link to={`/admin/orders/${order.id}`}>
-          <div data-testid={`${index}-order-card-container`}>
-            <p data-testid={`${index}-order-number`}>Pedido {order.id}</p>
-            <p data-testid={`${index}-order-address`}>
-              {order.deliveryAddress}, {order.deliveryNumber}
-            </p>
-            <p data-testid={`${index}-order-total-value`}>
-              R$ {order.totalPrice.toFixed(2).toString().replace('.', ',')}
-            </p>
-            <label data-testid={`${index}-order-status`}>{order.status}</label>
-          </div>
-        </Link>
-      ))}
+      <section className="OrdersContainer">
+        {ordersAdminList.map((order, index) => (
+          <Link to={`/admin/orders/${order.id}`}>
+            <div data-testid={`${index}-order-card-container`} className="OrdersCard">
+              <p data-testid={`${index}-order-number`}>Pedido {order.id}</p>
+              <p data-testid={`${index}-order-address`}>
+                {order.deliveryAddress}, {order.deliveryNumber}
+              </p>
+              <p data-testid={`${index}-order-total-value`}>
+                R$ {order.totalPrice.toFixed(2).toString().replace('.', ',')}
+              </p>
+              <label data-testid={`${index}-order-status`}>{order.status}</label>
+            </div>
+          </Link>
+        ))}
+      </section>
     </div>
   )
 };

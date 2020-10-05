@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import burgerMenuIcon from '../images/icons/burgerMenuIcon.svg';
-import "../styles/Sidebar.css";
+import "../styles/Header.css";
 
 const toggleMenu = (sideMenu, setsideMenu) => {
-  if (sideMenu === 'HideSideMenu') return setsideMenu('');
-  return setsideMenu('HideSideMenu');
+  if (sideMenu === 'hide-side-menu') return setsideMenu('');
+  return setsideMenu('hide-side-menu');
 };
 
 function Header({ title }) {

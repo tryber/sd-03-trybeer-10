@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Header from '../components/Header';
+import '../styles/Orders.css';
 
 function Orders(props) {
   const [ordersList, setOrdersList] = useState([]);
@@ -33,19 +34,21 @@ function Orders(props) {
   return (
     <div>
       <Header title='Meus Pedidos' />
-      {ordersList.map((order, index) => (
-        <Link to={`/orders/${order.id}`}>
-          <div data-testid={`${index}-order-card-container`}>
-            <p data-testid={`${index}-order-number`}>Pedido {order.id}</p>
-            <p data-testid={`${index}-order-date`}>
-              {setTime(order.saleDate).toLocaleDateString('pt-BR', dateFormat)}
-            </p>
-            <p data-testid={`${index}-order-total-value`}>
-              R$ {order.totalPrice.toFixed(2).toString().replace('.', ',')}
-            </p>
-          </div>
-        </Link>
-      ))}
+      <section className="OrdersContainer">
+        {ordersList.map((order, index) => (
+          <Link to={`/orders/${order.id}`}>
+            <div data-testid={`${index}-order-card-container`} className="OrdersCard">
+              <p data-testid={`${index}-order-number`}>Pedido {order.id}</p>
+              <p data-testid={`${index}-order-date`}>
+                {setTime(order.saleDate).toLocaleDateString('pt-BR', dateFormat)}
+              </p>
+              <p data-testid={`${index}-order-total-value`}>
+                R$ {order.totalPrice.toFixed(2).toString().replace('.', ',')}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </section>
     </div>
   )
 };
