@@ -29,6 +29,7 @@ function Login(props) {
       <form className="FormLogin" id='login-form' method='POST'>
         <label htmlFor="email">Email<br />
           <input
+            className="InputLogin"
             data-testid="email-input"
             id="email"
             type="email"
@@ -37,6 +38,7 @@ function Login(props) {
         </label><br />
         <label htmlFor="password">Password<br />
           <input
+          className="InputLogin"
             data-testid="password-input"
             id="password"
             type="password"

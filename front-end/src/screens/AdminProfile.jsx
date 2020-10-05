@@ -8,15 +8,19 @@ const AdminProfile = (props) => {
 
   useEffect(() => {
     console.log(user);
-    if(!user) return props.history.push('/login');
+    if (!user) return props.history.push('/login');
   }, [])
 
   if (!user) return <Redirect to="/login" />
   return (
-    <div>
+    <div className="ProfileContainer">
       <AdminHeader title="Perfil" />
-      <h3 data-testid="profile-name">{`Nome: ${user.name}`}</h3>
-      <h3 data-testid="profile-email">{`Email: ${user.email}`}</h3>
+      <section className="FormContainer">
+        <p>Nome</p>
+        <p data-testid="profile-name">{`${user.name}`}</p><br />
+        <p>Email</p>
+        <p data-testid="profile-email">{`${user.email}`}</p>
+      </section>
     </div>
   )
 

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { MainContext } from '../context/context';
 import Header from '../components/Header';
+import '../styles/Products.css';
 
 const Products = (props) => {
   const { products, setProducts, okMessage } = useContext(MainContext);
@@ -70,32 +71,35 @@ const Products = (props) => {
     <div>
       <Header title='TryBeer' />
       {okMessage ? <h3>Compra realizada com sucesso!</h3> : null}
-      {products.map((product, ind) => {
-        let index;
-        if (carts[cartIndex] && carts[cartIndex].list) index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
-        return (<div>
-          <h3 data-testid={`${ind}-product-name`}>{product.name}</h3>
-          <img data-testid={`${ind}-product-img`} src={product.urlImage} alt="Produto" width='125px' />
-          <h4 data-testid={`${ind}-product-price`}>{`R$ ${product.price.toFixed(2).toString().replace('.', ',')}`}</h4>
-          <button type="button" data-testid={`${ind}-product-minus`} onClick={() => removeProduct(product)}>-</button>
-          <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>
-            {(carts[cartIndex] && carts[cartIndex].list[index]) ? carts[cartIndex].list[index].qty : 0}
-          </span>
-          <button type="button" data-testid={`${ind}-product-plus`} onClick={() => addProduct(product)}>+</button>
-        </div>)
-      }
-      )}
-      <div style={{
-        position: "fixed", backgroundColor: "green",
-        height: "50px", bottom: "0", width: "100%", color: "white"
-      }}>
+      <section className="ProductsContainer">
+        {products.map((product, ind) => {
+          let index;
+          if (carts[cartIndex] && carts[cartIndex].list) index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
+          return (<div className="ProductsCards">
+            <div className="CardTitle">
+              <h3 data-testid={`${ind}-product-name`}>{product.name}</h3>
+            </div>
+            <img data-testid={`${ind}-product-img`} src={product.urlImage} />
+            <h4 data-testid={`${ind}-product-price`}>{`R$ ${product.price.toFixed(2).toString().replace('.', ',')}`}</h4>
+            <div className="BtnCard">
+              <button className="BtnMinus" type="button" data-testid={`${ind}-product-minus`} onClick={() => removeProduct(product)}>-</button>
+              <span id={`id-${product.id}-qty`} data-testid={`${ind}-product-qtd`}>
+                {(carts[cartIndex] && carts[cartIndex].list[index]) ? carts[cartIndex].list[index].qty : 0}
+              </span>
+              <button className="BtnPlus" type="button" data-testid={`${ind}-product-plus`} onClick={() => addProduct(product)}>+</button>
+            </div>
+          </div>)
+        }
+        )}
+      </section>
+      <footer className="FooterProducts">
         <p data-testid="checkout-bottom-btn-value">{`R$ ${(Math.round(totalPrice * 100) / 100).toFixed(2).toString().replace('.', ',')}`}
           <Link to="/checkout">
             <button data-testid="checkout-bottom-btn" disabled={totalPrice === 0}>Ver Carrinho</button>
           </Link>
         </p>
-      </div>
-    </div>
+      </footer>
+    </div >
   )
 };
 

@@ -1,11 +1,20 @@
 .ContainerLogin {
-  background-image: url(../images/FundoLogin.jpg);
+  background-image: url(../images/FundoLogin.png);
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .ContainerLogin h1 {
   padding: 15% 0 0;
+}
+
+@media screen and ( max-width: 760px) {
+  .ContainerLogin {
+    background-size: 115%;
+  }
+  .InputLogin {
+    max-width: 80%;
+  }
 }
 
 .FormLogin {
@@ -26,5 +35,6 @@
 .NoAccountBtn {
   background-color: white;
   border-style: none;
+  margin: 5px 0 15px;
   padding: 5px;
 }

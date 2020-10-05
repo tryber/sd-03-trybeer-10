@@ -1,12 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import burgerMenuIcon from '../images/icons/burgerMenuIcon.svg';
-import "../styles/Sidebar.css";
-
-const toggleMenu = (sideMenu, setsideMenu) => {
-  if (sideMenu === 'hide-side-menu') return setsideMenu('');
-  return setsideMenu('hide-side-menu');
-};
+import "../styles/Header.css";
 
 function AdminHeader({ title }) {
 
@@ -17,19 +11,19 @@ function AdminHeader({ title }) {
   };
 
   return (
-    <header className="header">
-      <h1 data-testid="top-title" className="top-title">{title}</h1>
-      <div className={ `side-menu-container` }>
+    <header className="Header">
+      <div className="side-menu-container">
         <Link to="/admin/orders">
-          <button data-testid="side-menu-item-orders" className="menu-item">Meus Pedidos</button>
+          <button data-testid="side-menu-item-orders" className="MenuItem">Meus Pedidos</button>
         </Link>
         <Link to="/admin/profile">
-          <button data-testid="side-menu-item-profile" className="menu-item">Meu Perfil</button>
+          <button data-testid="side-menu-item-profile" className="MenuItem">Meu Perfil</button>
         </Link>
-        <button data-testid="side-menu-item-logout" className="menu-item logout-btn" type="button" onClick={() => handleLogout()}>
+        <button data-testid="side-menu-item-logout" className="MenuItem LogoutBtn" type="button" onClick={() => handleLogout()}>
           Sair
         </button>
       </div>
+      <h1 data-testid="top-title" className="TopTitle TitleAdmin">{title}</h1>
     </header>
   )
 };
