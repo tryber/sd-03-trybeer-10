@@ -24,13 +24,14 @@ const registerSaleProduct = async (saleId, productId, qty) => {
 
 const fetchOrders = async () => {
   const db = await connection();
-  const fetch = await db.getTable('sales').select(['id', 'total_price', 'sale_date'])
+  const fetch = await db.getTable('sales')
+    .select(['id', 'total_price', 'delivery_address', 'delivery_number', 'sale_date', 'status'])
     .orderBy('id')
     .execute();
   const recipes = fetch.fetchAll();
 
-  return recipes.map(([id, totalPrice, saleDate]) => (
-    { id, totalPrice, saleDate }
+  return recipes.map(([id, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) => (
+    { id, totalPrice, deliveryAddress, deliveryNumber, saleDate, status }
   ));
 };
 
@@ -63,10 +64,22 @@ const getOrderById = async (Id) => connection()
     ? ({ id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status }) : null))
   .catch((err) => { console.error(err); });
 
+const updateOrder = async (saleId) => (
+  connection()
+    .then((db) => db
+      .getTable('sales')
+      .update()
+      .set('status', 'Entregue')
+      .where('id = :saleId')
+      .bind('saleId', saleId)
+      .execute())
+);
+
 module.exports = {
   registerSale,
   registerSaleProduct,
   fetchOrders,
   getOrderDetail,
   getOrderById,
+  updateOrder,
 };

@@ -18,8 +18,11 @@ const getOrderDetail = async (id) => orderModel.getOrderDetail(id);
 
 const getOrderById = async (id) => orderModel.getOrderById(id);
 
+const updateOrder = async (id) => orderModel.updateOrder(id);
+
 module.exports = {
   newSale,
   getOrderDetail,
   getOrderById,
+  updateOrder,
 };

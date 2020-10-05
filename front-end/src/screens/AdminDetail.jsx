@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import Header from '../components/Header';
+import AdminHeader from '../components/AdminHeader';
 
 function OrderDetail(props) {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -16,7 +16,7 @@ function OrderDetail(props) {
     fetch(`http://localhost:3001/orders/${props.match.params.id}`, { headers })
       .then((response) => response.json()
       .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
-      .then((data) => {console.log(data); return setOrderInfo(data)})
+      .then((data) => setOrderInfo(data))
       .catch((_err) => setLoggedIn(false))
   }, [])
 
@@ -32,9 +32,10 @@ function OrderDetail(props) {
   
   return ( orderInfo ?
     <div>
-      <Header title="Detalhes de Pedido"/>
+      <AdminHeader title="Detalhes de Pedido"/>
       <h2 data-testid="order-number">Pedido {orderInfo.orderById.id}</h2>
       <h2 data-testid="order-date">{setTime(orderInfo.orderById.saleDate).toLocaleDateString('pt-BR', dateFormat)}</h2>
+      <h2 data-testid="order-status">{orderInfo.orderById.status}</h2>
         {orderInfo.orderDetail.map(({ quantity, name, price }, index) =>
       <table>
         <tr>
@@ -44,12 +45,26 @@ function OrderDetail(props) {
           <td data-testid={`${index}-product-name`}>{name}</td>
         </tr>
         <tr>
+          <td data-testid={`${index}-order-unit-price`}>{`(R$ ${price.toFixed(2).toString().replace('.', ',')})`}</td>
+        </tr>
+        <tr>
           <td data-testid={`${index}-product-total-value`}>{`R$ ${(Math.round((price*quantity)*100)/100).toFixed(2).toString().replace('.', ',')}`}</td>
         </tr>
       </table>
         )
       }
       <h3 data-testid="order-total-value">Total {`R$ ${(Math.round((orderInfo.orderById.totalPrice)*100)/100).toFixed(2).toString().replace('.', ',')}`}</h3>
+      {orderInfo.orderById.status === 'Pendente' ? <button data-testid="mark-as-delivered-btn" onClick={async () => {
+        const headers = new Headers({ "Authorization": currentUser.token });
+        await fetch(`http://localhost:3001/orders/${orderInfo.orderById.id}`, { method: 'PUT', headers })
+          .catch((err) => console.log(err));;
+        setOrderInfo({ ...orderInfo, orderById: { ...orderInfo.orderById, status: 'Entregue' }});
+        }}>
+          Marcar como entregue
+        </button> 
+        : 
+        null
+      }
     </div>
     :
     <p>Carregando...</p>

@@ -11,7 +11,7 @@ const registerNewSale = rescue(async (req, res) => {
   res.status(201).json({ saleId });
 });
 
-const listAllOrders = rescue(async (req, res) => {
+const listAllOrders = rescue(async (_req, res) => {
   const ordersList = await orderModel.fetchOrders();
 
   return res.status(200).json(ordersList);
@@ -24,8 +24,15 @@ const getOrderDetail = rescue(async (req, res) => {
   return res.status(200).json({ orderDetail, orderById });
 });
 
+const updateOrder = rescue(async (req, res) => {
+  const { id } = req.params;
+  await orderService.updateOrder(id);
+  return res.status(200).send();
+});
+
 module.exports = {
   registerNewSale,
   listAllOrders,
   getOrderDetail,
+  updateOrder,
 };
