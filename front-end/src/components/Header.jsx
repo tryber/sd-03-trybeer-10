@@ -16,7 +16,7 @@ function Header({ title }) {
     history.push("/login");
   };
 
-  const [sideMenu, setsideMenu] = React.useState('HideSideMenu');
+  const [sideMenu, setsideMenu] = React.useState('hide-side-menu');
 
   return (
     <header className="Header">

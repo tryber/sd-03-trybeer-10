@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import '../styles/Products.css';
 
 const Products = (props) => {
-  const { products, setProducts } = useContext(MainContext);
+  const { products, setProducts, okMessage } = useContext(MainContext);
   let ini = [];
   if (localStorage.getItem('carts')) {
     ini = (JSON.parse(localStorage.getItem('carts')));
@@ -31,7 +31,11 @@ const Products = (props) => {
       .then((response) => response.json()
         .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
       .then((data) => setProducts(data))
+<<<<<<< HEAD
       .catch((err) => setLoggedIn(false))
+=======
+      .catch((_err) => setLoggedIn(false))
+>>>>>>> 95c9b4352d2427e44665a1ffc283334cdc28ddda
   }, [])
 
   useEffect(() => {
@@ -71,6 +75,7 @@ const Products = (props) => {
     <div>
       <Header title='TryBeer' />
       <section className="ProductsContainer">
+        {okMessage ? <h3>Compra realizada com sucesso!</h3> : null}
         {products.map((product, ind) => {
           let index;
           if (carts[cartIndex] && carts[cartIndex].list) index = carts[cartIndex].list.findIndex((e) => e.id === product.id);
@@ -94,7 +99,7 @@ const Products = (props) => {
           </Link>
         </p>
       </footer>
-    </div>
+    </div >
   )
 };
 
