@@ -81,7 +81,11 @@ const Checkout = (props) => {
                 fetch(`http://localhost:3001/orders`, { method: 'POST', body, headers })
                   .then((response) => response.json()
                     .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
-                  .then(() => setOkMessage('Compra realizada com sucesso!'));;
+                  .then(() => {
+                    carts[cartIndex].list = [];
+                    localStorage.setItem('carts', JSON.stringify(carts))
+                    return setOkMessage('Compra realizada com sucesso!')
+                  });;
 
               return props.history.push('/products');
             }}>

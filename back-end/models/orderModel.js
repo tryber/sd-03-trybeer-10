@@ -42,8 +42,9 @@ const getOrderDetail = async (SaleId) => connectionPlain()
       FROM Trybeer.sales_products AS sp
       INNER JOIN Trybeer.products AS pr
       ON sp.product_id = pr.id
-      WHERE sp.sale_id = ${SaleId};
+      WHERE sp.sale_id = ?;
     `)
+    .bind(SaleId)
     .execute())
   .then((results) => results.fetchAll())
   .then((products) => products.map(([saleId, productId, quantity, name, price]) => ({

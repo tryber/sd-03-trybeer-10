@@ -16,9 +16,12 @@ function OrderDetail(props) {
 
     fetch(`http://localhost:3001/orders/${props.match.params.id}`, { headers })
       .then((response) => response.json()
-        .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
-      .then((data) => { console.log(data); return setOrderInfo(data) })
-      .catch((_err) => setLoggedIn(false))
+      .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))))
+      .then((data) =>  setOrderInfo(data))
+      .catch((err) => {
+        if(err.message === 'Order not found') return setOrderInfo({ message: err.message });
+        setLoggedIn(false);
+      })
   }, [])
 
   if (!loggedIn) return <Redirect to="/login" />
@@ -29,9 +32,14 @@ function OrderDetail(props) {
     return format;
   }
 
-  const dateFormat = { day: '2-digit', month: '2-digit' }
+  const dateFormat = { day: '2-digit', month: '2-digit' };
 
-  return (orderInfo ?
+  if(orderInfo && orderInfo.message) return (<div>
+    <Header title="Detalhes de Pedido" />
+    <h1>{orderInfo.message}</h1>
+  </div>);
+
+  return (orderInfo && orderInfo.orderById ?
     <div>
       <Header title="Detalhes de Pedido" />
       <section className="DetailsContainer">
