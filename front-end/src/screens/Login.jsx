@@ -70,10 +70,10 @@ function Login(props) {
         >
           ENTRAR
         </button><br />
-      </form>
         <Link to='/register'>
           <button className="NoAccountBtn" data-testid="no-account-btn">Ainda não tenho conta</button>
         </Link>
+      </form>
     </div>
   )
 };
