@@ -1,5 +1,6 @@
 .ListItem {
-  border: 1px solid;
+  background-color: white;
+  border: 1px solid #3F7D20;
   margin: 30px;
   width: 50%;
 }
@@ -17,16 +18,19 @@
 }
 
 .Itens button {
-  background-color: red;
-  border: red;
+  background-color: white;
+  border: none;
+  color: red;
   cursor: pointer;
+  font-weight: 600;
   height: 25px;
   width: 50px;
 }
 
 .FormCheckout {
   align-items: center;
-  border: 1px solid;
+  background-color: white;
+  border: 1px solid #3F7D20;
   display: flex;
   flex-direction: column;
   margin: 30px;
@@ -34,11 +38,14 @@
 }
 
 .FormCheckout input {
+  background-color: whitesmoke;
+  border: 1px solid;
   margin: 10px;
+  width: 400px;
 }
 
 .FooterCheckout {
-  background-color: green;
+  background-color: #3F7D20;
   bottom: 0;
   color: white;
   height: 50px;

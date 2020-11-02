@@ -51,14 +51,14 @@ const Checkout = (props) => {
       <form className="FormCheckout">
         <h3>Endereço</h3>
         <label htmlFor="address">
-          Rua<br />
+          Rua
           <input
             id="address" type="text" value={address} data-testid="checkout-street-input"
             onChange={(event) => setAddress(event.target.value)}
           />
         </label>
         <label htmlFor="number">
-          Número<br />
+          Número
           <input
             id="number" type="text" value={number} data-testid="checkout-house-number-input"
             onChange={(event) => setNumber(event.target.value)}

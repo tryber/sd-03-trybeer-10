@@ -50,9 +50,9 @@ function OrderDetail(props) {
         <div className="InfoDetails">
           {orderInfo.orderDetail.map(({ quantity, name, price }, index) => (
             <div className="CardDetails">
-              <p data-testid={`${index}-product-qtd`}>{quantity}</p>
-              <p data-testid={`${index}-product-name`}>{name}</p>
-              <p data-testid={`${index}-product-total-value`}>{`R$ ${(Math.round((price * quantity) * 100) / 100).toFixed(2).toString().replace('.', ',')}`}</p>
+              <p data-testid={`${index}-product-qtd`} className="DetailsItem">{quantity}</p>
+              <p data-testid={`${index}-product-name`} className="DetailsItem">{name}</p>
+              <p data-testid={`${index}-product-total-value`} className="DetailsItem">{`R$ ${(Math.round((price * quantity) * 100) / 100).toFixed(2).toString().replace('.', ',')}`}</p>
             </div>
           ))}
           <h3 data-testid="order-total-value">Total {`R$ ${(Math.round((orderInfo.orderById.totalPrice) * 100) / 100).toFixed(2).toString().replace('.', ',')}`}</h3>
