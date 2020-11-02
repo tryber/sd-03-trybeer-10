@@ -35,6 +35,13 @@ const Products = (props) => {
   }, [])
 
   useEffect(() => {
+    if (okMessage) {
+      const timer = setTimeout(() => setOkMessage(''), 3000)
+      return () => clearTimeout(timer);
+    }
+  }, [okMessage])
+
+  useEffect(() => {
     if (carts[cartIndex])
       setTotalPrice(carts[cartIndex].list.reduce((acc, e) => acc + Number(e.price) * Number(e.qty), 0));
   }, [carts])

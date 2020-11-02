@@ -10,8 +10,8 @@ const Profile = () => {
   const [succesMessage, setSuccesMessage] = useState('');
 
   const setLocalStorage = (user) => {
-    localStorage.setItem('user', JSON.stringify(user))
-  }
+    localStorage.setItem('user', JSON.stringify({ token: currentUser.token, ...user}))
+  };
 
   return (
     <div className="ProfileContainer">
@@ -57,8 +57,8 @@ const Profile = () => {
             Salvar
         </button>
         </form>
+        {/* <p>{succesMessage}</p> */}
       </section>
-      <p>{succesMessage}</p>
     </div>
   )
 };
