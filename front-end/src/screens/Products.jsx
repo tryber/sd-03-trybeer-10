@@ -70,7 +70,7 @@ const Products = (props) => {
   if (!loggedIn) return <Redirect to="/login" />
   return (
     <div>
-      <Header title='Trybeer' />
+      <Header title='TryBeer' />
       {okMessage ? <h3>Compra realizada com sucesso!</h3> : null}
       <section className="ProductsContainer">
         {products.map((product, ind) => {
