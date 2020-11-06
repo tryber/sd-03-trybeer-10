@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import '../styles/Products.css';
 
 const Products = (props) => {
-  const { products, setProducts, okMessage } = useContext(MainContext);
+  const { products, setProducts, okMessage, setOkMessage } = useContext(MainContext);
   let ini = [];
   if (localStorage.getItem('carts')) {
     ini = (JSON.parse(localStorage.getItem('carts')));
@@ -40,30 +40,31 @@ const Products = (props) => {
   }, [carts])
 
   const addProduct = (product) => {
+    setOkMessage('');
     const cartItemIndex = carts[cartIndex].list.findIndex((e) => e.id === product.id);
-    const qty = Number(document.getElementById(`id-${product.id}-qty`).innerHTML);
+    const updateCart = [...carts];
     if (cartItemIndex >= 0) {
-      setCarts([...carts, carts[cartIndex].list[cartItemIndex].qty += 1])
-      document.getElementById(`id-${product.id}-qty`).innerHTML = qty + 1;
+      updateCart[cartIndex].list[cartItemIndex].qty += 1
+      setCarts([...updateCart]);
       return localStorage.setItem('carts', JSON.stringify(carts));
     }
-    setCarts([...carts, carts[cartIndex].list.push({ ...product, qty: 1 })]);
-    localStorage.setItem('carts', JSON.stringify(carts));;
-    document.getElementById(`id-${product.id}-qty`).innerHTML = qty + 1;
+    updateCart[cartIndex].list = [...updateCart[cartIndex].list, { ...product, qty: 1 }];
+    setCarts([...updateCart]);
+    localStorage.setItem('carts', JSON.stringify([...updateCart]));
   };
 
   const removeProduct = (product) => {
     const cartItemIndex = carts[cartIndex].list.findIndex((e) => e.id === product.id);
-    const qty = Number(document.getElementById(`id-${product.id}-qty`).innerHTML);
     if (cartItemIndex < 0) return;
     if ((carts[cartIndex].list[cartItemIndex].qty - 1) === 0) {
-      const newList = carts[cartIndex].list.filter((e) => e.id !== product.id);
-      setCarts([...carts, carts[cartIndex].list = newList])
-      document.getElementById(`id-${product.id}-qty`).innerHTML = qty - 1;
-      return localStorage.setItem('carts', JSON.stringify(carts));
+      const updateCart = [...carts];
+      updateCart[cartIndex].list = updateCart[cartIndex].list.filter((e) => e.id !== product.id);
+      setCarts([...updateCart]);
+      return localStorage.setItem('carts', JSON.stringify([...updateCart]));
     }
-    setCarts([...carts, carts[cartIndex].list[cartItemIndex].qty -= 1]);
-    document.getElementById(`id-${product.id}-qty`).innerHTML = qty - 1;
+    const updateCart = [...carts];
+    updateCart[cartIndex].list[cartItemIndex].qty -= 1
+    setCarts([...updateCart]);
     localStorage.setItem('carts', JSON.stringify(carts));
   }
   if (!loggedIn) return <Redirect to="/login" />

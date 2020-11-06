@@ -15,9 +15,6 @@ function Register(props) {
     && (emailTest.test(email))
     && (password.length >= 6 && typeof password !== 'number')
   );
-  console.log((name.length >= 12 && nameTest.test(name))
-    && (emailTest.test(email))
-    && (password.length >= 6 && typeof password !== 'number'))
 
   const setLocalStorage = (user) => {
     localStorage.setItem('user', JSON.stringify(user))

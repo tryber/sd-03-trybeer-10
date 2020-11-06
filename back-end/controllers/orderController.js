@@ -21,6 +21,7 @@ const getOrderDetail = rescue(async (req, res) => {
   const { id } = req.params;
   const orderDetail = await orderService.getOrderDetail(id);
   const orderById = await orderService.getOrderById(id);
+  if (!orderDetail || !orderById) return res.status(404).json({ message: 'Order not found' });
   return res.status(200).json({ orderDetail, orderById });
 });
 

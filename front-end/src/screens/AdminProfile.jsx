@@ -7,7 +7,6 @@ const AdminProfile = (props) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    console.log(user);
     if (!user) return props.history.push('/login');
   }, [])
 
